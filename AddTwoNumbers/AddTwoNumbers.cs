@@ -26,40 +26,36 @@ namespace LeetCode.AddTwoNumbers
             return node;
         }
 
-        public static int DeconstructList(ListNode node)
-        {
-            //var numbers = new List<int>();
-            var number = 0;
-            int index = 0;
-            while (index >= 0)
-            {
-                //numbers.Add(node.val);
-                number += node.val * (int)Math.Pow(10, index);
 
-                if (node.next != null)
-                {
-                    node = node.next;
-                    index++;
-                }
-                else
+        public static List<int> AddNodes(ListNode node1, ListNode node2)
+        {
+            List<int> sum = new List<int>();
+            int carry = 0;
+            while (true)
+            {
+                int nodeSum = carry;
+
+                if (node1 != null)
+                    nodeSum += node1.val;
+
+                if (node2 != null)
+                    nodeSum += node2.val;
+
+                carry = nodeSum / 10;
+                nodeSum %= 10;
+
+                sum.Add(nodeSum);
+
+                if (node1?.next == null && node2?.next == null && carry == 0)
                     break;
+                else
+                {
+                    node1 = node1?.next;
+                    node2 = node2?.next;
+                }
             }
 
-            return number;
-        }
-
-        public static List<int> GetNumbers(int number)
-        {
-            var numbers = new List<int>();
-
-            while (number > 0)
-            {
-                int val = number % 10;
-                numbers.Add(val);
-                number /= 10;
-            }
-
-            return numbers;
+            return sum;
         }
     }
 }
