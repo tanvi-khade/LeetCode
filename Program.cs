@@ -19,7 +19,10 @@ namespace LeetCode
         {
 
             Console.WriteLine("Leet Code Questions");
-                        
+            int[] arr1 = new int[] { 1, 5 };
+            int[] arr2 = new int[] { 2,8 };
+            MedianOfTwoSortedArrays.MedianOfTwoSortedArrays.Solution(arr1, arr2);
+
         }
 
     }
